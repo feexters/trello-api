@@ -1,3 +1,4 @@
+
 {
   "compilerOptions": {
     "module": "commonjs",
@@ -5,11 +6,25 @@
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
-  }
+    "incremental": true,
+    "paths": {
+      "src/*": [
+        "src/*"
+      ],
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
