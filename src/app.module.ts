@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { DeskColumnsModule } from './desk-columns/desk-columns.module';
 import { CommentsModule } from './comments/comments.module';
 import { CardsModule } from './cards/cards.module';
+import { AuthModule } from './auth/auth.module';
 import * as configuration from './config/configuration';
 
 @Module({
@@ -23,6 +24,7 @@ import * as configuration from './config/configuration';
     DeskColumnsModule,
     CommentsModule,
     CardsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
