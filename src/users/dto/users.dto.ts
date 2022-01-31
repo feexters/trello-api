@@ -1,5 +1,5 @@
 import { User } from '../entities';
-import { PartialType, PickType } from '@nestjs/swagger';
+import { PickType } from '@nestjs/swagger';
 
 export class UserCreateDto extends PickType(User, [
   'username',
@@ -7,4 +7,4 @@ export class UserCreateDto extends PickType(User, [
   'email',
 ]) {}
 
-export class UserUpdateDto extends PartialType(UserCreateDto) {}
+export class UserUpdateDto extends PickType(User, ['username']) {}
