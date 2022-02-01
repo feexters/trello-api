@@ -20,22 +20,22 @@ import { DeskColumnCreateDto, DeskColumnUpdateDto } from './dto';
 export class DeskColumnsController {
   constructor(private readonly deskColumnsService: DeskColumnsService) {}
 
-  @Get('/columns')
+  @Get('/desk-columns')
   @ApiResponse({ type: [DeskColumn] })
   getAllColumnsByUser(@Param('userId') userId: string) {
     return this.deskColumnsService.getAllByUserId(userId);
   }
 
-  @Get('/columns/:columnId')
+  @Get('/desk-columns/:deskColumnId')
   @ApiResponse({ type: DeskColumn })
   getColumnById(
     @Param('userId') userId: string,
-    @Param('columnId') columnId: string,
+    @Param('deskColumnId') columnId: string,
   ) {
     return this.deskColumnsService.getColumn(userId, columnId);
   }
 
-  @Post('/columns')
+  @Post('/desk-columns')
   @ApiBearerAuth()
   @ApiResponse({ type: DeskColumn })
   @UseGuards(JwtAuthGuard, DeskColumnOwnerGuard)
@@ -46,14 +46,14 @@ export class DeskColumnsController {
     return this.deskColumnsService.createColumn(deskColumnCreateDto, userId);
   }
 
-  @Patch('/columns/:columnId')
+  @Patch('/desk-columns/:deskColumnId')
   @ApiBearerAuth()
   @ApiResponse({ type: DeskColumn })
   @UseGuards(JwtAuthGuard, DeskColumnOwnerGuard)
   updateColumn(
     @Body() deskColumnUpdateDto: DeskColumnUpdateDto,
     @Param('userId') userId: string,
-    @Param('columnId') columnId: string,
+    @Param('deskColumnId') columnId: string,
   ) {
     return this.deskColumnsService.updateColumn(deskColumnUpdateDto, {
       userId,
@@ -61,12 +61,12 @@ export class DeskColumnsController {
     });
   }
 
-  @Delete('/columns/:columnId')
+  @Delete('/desk-columns/:deskColumnId')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, DeskColumnOwnerGuard)
   deleteColumn(
     @Param('userId') userId: string,
-    @Param('columnId') columnId: string,
+    @Param('deskColumnId') columnId: string,
   ) {
     return this.deskColumnsService.deleteColumn({
       userId,
