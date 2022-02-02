@@ -18,17 +18,17 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CardOwnerGuard } from './guards';
 
 @ApiTags('cards')
-@Controller('desk-columns/:deskColumnId')
+@Controller('desk-columns/:deskColumnId/cards')
 export class CardsController {
   constructor(private readonly cardsService: CardsService) {}
 
-  @Get('/cards')
+  @Get()
   @ApiResponse({ type: [Card] })
   getAllByColumn(@Param('deskColumnId') deskColumnId: string) {
     return this.cardsService.getAllByColumnId(deskColumnId);
   }
 
-  @Get('/cards/:cardId')
+  @Get('/:cardId')
   @ApiResponse({ type: Card })
   getCard(
     @Param('deskColumnId') deskColumnId: string,
@@ -37,7 +37,7 @@ export class CardsController {
     return this.cardsService.getCard({ deskColumnId, cardId });
   }
 
-  @Post('/cards')
+  @Post()
   @ApiResponse({ type: Card })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
@@ -52,7 +52,7 @@ export class CardsController {
     });
   }
 
-  @Patch('/cards/:cardId')
+  @Patch('/:cardId')
   @ApiResponse({ type: Card })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, CardOwnerGuard)
@@ -67,7 +67,7 @@ export class CardsController {
     });
   }
 
-  @Delete('/cards/:cardId')
+  @Delete('/:cardId')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, CardOwnerGuard)
   deleteColumn(

@@ -9,7 +9,7 @@ import {
 import { User } from 'src/users/entities/user.entity';
 import { Card } from 'src/cards/entities/card.entity';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 const tableName = 'desk_columns';
 
@@ -23,6 +23,7 @@ export class DeskColumn {
 
   @ApiProperty({ example: 'column title' })
   @IsString()
+  @IsNotEmpty()
   @Column('text')
   title: string;
 
